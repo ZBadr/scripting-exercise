@@ -13,17 +13,17 @@ function getAndPrintHTML() {
 https.get(requestOptions, function(response) {
 
 
-  // response.setEncoding('utf8');
+  response.setEncoding('utf8');
 
   response.on('data', function (data) {
     allChunks += 'Chunk Received. Length:'+ data.length + data + '\n';
-      console.log(allChunks);
   });
 
+  response.on('end', function() {
+    console.log('Response stream complete.');
+    console.log(allChunks);
+  });
 
-  // response.on('end', function() {
-  //   console.log('Response stream complete.');
-  // });
 
 });
 
